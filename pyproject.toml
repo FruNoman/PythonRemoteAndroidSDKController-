@@ -2,5 +2,7 @@
 requires = [
     "setuptools>=42",
     "wheel",
+    "importlib-resources==5.4.0",
+    "loguru==0.5.3",
 ]
 build-backend = "setuptools.build_meta"

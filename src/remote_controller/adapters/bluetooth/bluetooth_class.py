@@ -1,0 +1,96 @@
+import enum
+
+
+class Device(enum.Enum):
+    UNKNOWN = 0x0000
+    COMPUTER_UNCATEGORIZED = 0x0100
+    COMPUTER_DESKTOP = 0x0104
+    COMPUTER_SERVER = 0x0108
+    COMPUTER_LAPTOP = 0x010C
+    COMPUTER_HANDHELD_PC_PDA = 0x0110
+    COMPUTER_PALM_SIZE_PC_PDA = 0x0114
+    COMPUTER_WEARABLE = 0x0118
+    PHONE_UNCATEGORIZED = 0x0200
+    PHONE_CELLULAR = 0x0204
+    PHONE_CORDLESS = 0x0208
+    PHONE_SMART = 0x020C
+    PHONE_MODEM_OR_GATEWAY = 0x0210
+    PHONE_ISDN = 0x0214
+    AUDIO_VIDEO_UNCATEGORIZED = 0x0400
+    AUDIO_VIDEO_WEARABLE_HEADSET = 0x0404
+    AUDIO_VIDEO_HANDSFREE = 0x0408
+    AUDIO_VIDEO_MICROPHONE = 0x0410
+    AUDIO_VIDEO_LOUDSPEAKER = 0x0414
+    AUDIO_VIDEO_HEADPHONES = 0x0418
+    AUDIO_VIDEO_PORTABLE_AUDIO = 0x041C
+    AUDIO_VIDEO_CAR_AUDIO = 0x0420
+    AUDIO_VIDEO_SET_TOP_BOX = 0x0424
+    AUDIO_VIDEO_HIFI_AUDIO = 0x0428
+    AUDIO_VIDEO_VCR = 0x042C
+    AUDIO_VIDEO_VIDEO_CAMERA = 0x0430
+    AUDIO_VIDEO_CAMCORDER = 0x0434
+    AUDIO_VIDEO_VIDEO_MONITOR = 0x0438
+    AUDIO_VIDEO_VIDEO_DISPLAY_AND_LOUDSPEAKER = 0x043C
+    AUDIO_VIDEO_VIDEO_CONFERENCING = 0x0440
+    AUDIO_VIDEO_VIDEO_GAMING_TOY = 0x0448
+    WEARABLE_UNCATEGORIZED = 0x0700
+    WEARABLE_WRIST_WATCH = 0x0704
+    WEARABLE_PAGER = 0x0708
+    WEARABLE_JACKET = 0x070C
+    WEARABLE_HELMET = 0x0710
+    WEARABLE_GLASSES = 0x0714
+    TOY_UNCATEGORIZED = 0x0800
+    TOY_ROBOT = 0x0804
+    TOY_VEHICLE = 0x0808
+    TOY_DOLL_ACTION_FIGURE = 0x080C
+    TOY_CONTROLLER = 0x0810
+    TOY_GAME = 0x0814
+    HEALTH_UNCATEGORIZED = 0x0900
+    HEALTH_BLOOD_PRESSURE = 0x0904
+    HEALTH_THERMOMETER = 0x0908
+    HEALTH_WEIGHING = 0x090C
+    HEALTH_GLUCOSE = 0x0910
+    HEALTH_PULSE_OXIMETER = 0x0914
+    HEALTH_PULSE_RATE = 0x0918
+    HEALTH_DATA_DISPLAY = 0x091C
+    PERIPHERAL_NON_KEYBOARD_NON_POINTING = 0x0500
+    PERIPHERAL_KEYBOARD = 0x0540
+    PERIPHERAL_POINTING = 0x0580
+    PERIPHERAL_KEYBOARD_POINTING = 0x05C0
+
+
+class Major(enum.Enum):
+    MISC = 0x0000
+    COMPUTER = 0x0100
+    PHONE = 0x0200
+    NETWORKING = 0x0300
+    AUDIO_VIDEO = 0x0400
+    PERIPHERAL = 0x0500
+    IMAGING = 0x0600
+    WEARABLE = 0x0700
+    TOY = 0x0800
+    HEALTH = 0x0900
+    UNCATEGORIZED = 0x1F00
+
+
+class BluetoothClass:
+    DEVICE_BITMASK = 0x1FFC
+    MAJOR_BITMASK = 0x1F00
+
+    def __init__(self, bluetooth_class: int):
+        self.bluetooth_class = bluetooth_class
+
+    def get_device_class(self) -> Device:
+        constant = (self.bluetooth_class & self.DEVICE_BITMASK)
+        try:
+            device = Device(constant)
+            return device
+        except ValueError:
+            return Device.UNKNOWN
+
+    def get_device_major_class(self) -> Major:
+        constant = (self.bluetooth_class & self.MAJOR_BITMASK)
+        return Major(constant)
+
+    def __str__(self):
+        return f"class={str(self.get_device_class().name)}, major class={str(self.get_device_major_class().name)}"
