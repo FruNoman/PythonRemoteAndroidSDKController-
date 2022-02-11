@@ -3,12 +3,13 @@ import subprocess
 import re
 import time
 from shell import Shell
-
+import importlib.resources
 
 class AndroidShell(Shell):
 
     def __init__(self, serial):
         self.serial = serial
+        data = importlib.resources.read_binary("src.remote_controller.resources", "app-debug.apk")
 
     def execute(self, command: str) -> str:
         try:
