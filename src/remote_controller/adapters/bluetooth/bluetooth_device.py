@@ -1,7 +1,7 @@
 import enum
-from src.remote_controller.shells.shell import Shell
-from src.remote_controller.utils.logger import Logger
-from src.remote_controller.adapters.bluetooth.bluetooth_class import BluetoothClass
+from remote_controller.shells.shell import Shell
+from remote_controller.utils.logger import Logger
+from remote_controller.adapters.bluetooth.bluetooth_class import BluetoothClass
 
 
 class PairState(enum.Enum):

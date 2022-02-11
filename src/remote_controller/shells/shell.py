@@ -19,5 +19,5 @@ class Shell(object):
         pass
 
     def get_apk(self) -> str:
-        my_resources = importlib_resources.files("src.remote_controller.resources")
+        my_resources = importlib_resources.files("remote_controller.resources")
         return (my_resources / "app-debug.apk")

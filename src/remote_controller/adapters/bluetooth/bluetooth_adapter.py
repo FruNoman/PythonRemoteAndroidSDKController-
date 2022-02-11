@@ -1,12 +1,12 @@
 import enum
 import re
 from typing import List
-from src.remote_controller.shells.shell import Shell
-from src.remote_controller.utils.logger import Logger
-from src.remote_controller.adapters.bluetooth.bluetooth_device import BluetoothDevice
-from src.remote_controller.adapters.bluetooth.bluetooth_device import PairState
-from src.remote_controller.adapters.bluetooth.bluetooth_profile import ProfileType
-from src.remote_controller.adapters.bluetooth.bluetooth_profile import ConnectedState
+from remote_controller.shells.shell import Shell
+from remote_controller.utils.logger import Logger
+from remote_controller.adapters.bluetooth.bluetooth_device import BluetoothDevice
+from remote_controller.adapters.bluetooth.bluetooth_device import PairState
+from remote_controller.adapters.bluetooth.bluetooth_profile import ProfileType
+from remote_controller.adapters.bluetooth.bluetooth_profile import ConnectedState
 
 
 class State(enum.Enum):

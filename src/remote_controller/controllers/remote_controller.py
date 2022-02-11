@@ -1,5 +1,5 @@
-from src.remote_controller.shells.android_shell import AndroidShell
-from src.remote_controller.adapters.bluetooth.bluetooth_adapter import BluetoothAdapter
+from remote_controller.shells.android_shell import AndroidShell
+from remote_controller.adapters.bluetooth.bluetooth_adapter import BluetoothAdapter
 
 
 class RemoteController:

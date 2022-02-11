@@ -5,7 +5,7 @@ import time
 import importlib_resources
 
 import pkg_resources
-from src.remote_controller.controllers.remote_controller import RemoteController
+from remote_controller.controllers.remote_controller import RemoteController
 
 
 def print_hi():
