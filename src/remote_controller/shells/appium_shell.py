@@ -1,21 +1,20 @@
-import subprocess
 import re
 import time
+import subprocess
+from appium import webdriver
 from remote_controller.shells.shell import Shell
 
 
-class AndroidShell(Shell):
-
-    def __init__(self, serial):
-        self.serial = serial
+class AppiumShell(Shell):
+    def __init__(self, driver: webdriver.Remote):
+        self.driver = driver
+        self.serial = self.driver.execute_script("mobile: shell", {'command': 'getprop ro.boot.serialno'}).strip()
 
     def execute(self, command: str) -> str:
         try:
-            command = f"adb -s {self.serial} shell {command}".split()
-            out = subprocess.check_output(command, timeout=60).decode()
-            return out
-        except subprocess.CalledProcessError:
-            return ""
+            return self.driver.execute_script("mobile: shell", {'command': f'{command}'})
+        except Exception as e:
+            return ''
 
     def execute_broadcast(self, broadcast, command, *parameters) -> str:
         command_line = f'{broadcast} --es command {command}'

@@ -65,7 +65,7 @@ class BluetoothAdapter:
                  shell: Shell
                  ):
         self.shell = shell
-        self.logger = Logger(scope_name=f"{BluetoothAdapter.__name__} [{shell.serial}")
+        self.logger = Logger(scope_name=f"{BluetoothAdapter.__name__}] [{shell.serial}")
 
     def enable(self) -> None:
         self.shell.execute_broadcast(self.__bluetooth_broadcast, self.__enable)
@@ -120,7 +120,7 @@ class BluetoothAdapter:
         self.shell.execute_broadcast(self.__bluetooth_broadcast, self.__discoverable, time)
         self.logger.log(message="start discoverable")
 
-    def cancel_discoverable(self) -> None:
+    def stop_discoverable(self) -> None:
         self.set_scan_mode(ScanMode.SCAN_MODE_NONE, 0)
         self.logger.log(message="cancel discoverable")
 
@@ -245,11 +245,6 @@ class BluetoothAdapter:
                                              self.__get_profile_connection_state,
                                              profile.value)))
         self.logger.log(message=f"get profile [{profile.name}] connected state return [{result.name}]")
-        return result
-
-    def is_a2dp_sink_connected(self) -> bool:
-        result = self.get_profile_connected_state(ProfileType.A2DP_SINK) == ConnectedState.STATE_CONNECTED
-        self.logger.log(message=f"is A2DP_SINK connected [{str(result)}]")
         return result
 
     def get_connection_state(self) -> ConnectedState:
