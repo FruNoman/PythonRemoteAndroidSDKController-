@@ -1,7 +1,7 @@
 import time
 from remote_controller.controllers.remote_controller import RemoteController
-from remote_controller.adapters.bluetooth.bluetooth_adapter import ScanMode
-from remote_controller.adapters.bluetooth.bluetooth_adapter import ProfileType
+from remote_controller import ScanMode
+from remote_controller import ProfileType
 
 
 def bluetooth_enable_disable():

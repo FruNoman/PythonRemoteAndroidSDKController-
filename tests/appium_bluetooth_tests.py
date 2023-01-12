@@ -1,8 +1,8 @@
 import time
 from appium import webdriver
-from remote_controller.controllers.appium_controller import AppiumRemoteController
-from remote_controller.adapters.bluetooth.bluetooth_adapter import ScanMode
-from remote_controller.adapters.bluetooth.bluetooth_adapter import ProfileType
+from remote_controller import AppiumRemoteController
+from remote_controller import ScanMode
+from remote_controller import ProfileType
 
 SERVER_URL_BASE = "http://0.0.0.0:4777/wd/hub"
 DESIRED_CAPS_ANDROID = dict(
